@@ -309,9 +309,9 @@ List Child::rk4 (double days){
         AGE(_,i) = AGE(_,i-1) + dt/365.0; //Age is variable in years
       
        // Energy Intake
-       IntakeVector(_, i) = Intake(TIME(i));
+       IntakeMatrix(_, i) = Intake(TIME(i));
         // Energy Expenditure
-       ExpenditureVector(_,i) = Expenditure(TIME(i), ModelFFM(_,i), ModelFM(_,i));
+       ExpenditureMatrix(_,i) = Expenditure(TIME(i), ModelFFM(_,i), ModelFM(_,i));
     }
     
     return List::create(Named("Time") = TIME,
