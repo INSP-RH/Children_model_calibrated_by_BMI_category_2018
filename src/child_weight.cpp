@@ -320,7 +320,7 @@ List Child::rk4 (double days){
                         Named("Fat_Mass") = ModelFM,
                         Named("Body_Weight") = ModelBW,
                         Named("Correct_Values")=correctVals,
-                        Named("Model_Type")="Children"),
+                        Named("Model_Type")="Children",
                         Named("Intake") = IntakeVector,
                         Named("Expenditure") = ExpenditureVector);
 
