@@ -272,8 +272,8 @@ List Child::rk4 (double days){
     NumericMatrix ModelBW(nind, nsims + 1); //in rcpp
     NumericMatrix AGE(nind, nsims + 1); //in rcpp
     NumericVector TIME(nsims + 1); //in rcpp
-    NumericVector IntakeVector(nsims+1);
-    NumericVector ExpenditureVector(nsims+1);
+    NumericMatrix IntakeMatrix(nind, nsims+1);
+    NumericMatrix ExpenditureMatrix(nind, nsims+1);
     
     //Create initial states
     ModelFFM(_,0) = FFM;
@@ -309,9 +309,9 @@ List Child::rk4 (double days){
         AGE(_,i) = AGE(_,i-1) + dt/365.0; //Age is variable in years
       
        // Energy Intake
-       IntakeVector(i) = Intake(TIME(i));
+       IntakeVector(_, i) = Intake(TIME(i));
         // Energy Expenditure
-       ExpenditureVector(i) = Expenditure(TIME(i));
+       ExpenditureVector(_,i) = Expenditure(TIME(i), ModelFFM(_,i), ModelFM(_,i));
     }
     
     return List::create(Named("Time") = TIME,
@@ -321,8 +321,8 @@ List Child::rk4 (double days){
                         Named("Body_Weight") = ModelBW,
                         Named("Correct_Values")=correctVals,
                         Named("Model_Type")="Children",
-                        Named("Intake") = IntakeVector,
-                        Named("Expenditure") = ExpenditureVector);
+                        Named("Intake") = IntakeMatrix,
+                        Named("Expenditure") = ExpenditureMatrix);
 
 
 }
