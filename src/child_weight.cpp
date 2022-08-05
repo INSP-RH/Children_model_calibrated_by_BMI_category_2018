@@ -73,12 +73,10 @@
 #include "child_weight.h"
 
 //Default (classic) constructor for energy matrix
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
+Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
-    bmi   = input_bmi;
-    bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
     dt    = input_dt;
@@ -89,13 +87,11 @@ Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector inp
 }
 
 //Constructor which uses Richard's curve with the parameters of https://en.wikipedia.org/wiki/Generalised_logistic_function
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, double input_K,
+Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_FFM, NumericVector input_FM, double input_K,
              double input_Q, double input_A, double input_B, double input_nu, double input_C, 
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
-    bmi   = input_bmi;
-    bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
     dt    = input_dt;
@@ -156,8 +152,6 @@ NumericVector Child::Delta(NumericVector t){
     return deltamin + (deltamax - deltamin)*(1.0 / (1.0 + pow((t / P),h)));
 }
 
-
-
 NumericVector Child::FFMReference(NumericVector t){ 
   /*  return ffm_beta0 + ffm_beta1*t; */
   NumericMatrix ffm_ref(17,nind);
@@ -165,18 +159,18 @@ NumericVector Child::FFMReference(NumericVector t){
     ffm_ref(1,_)   = 12.099*(1 - sex) + 11.494*sex;
     ffm_ref(2,_)   = 14.0*(1 - sex) + 13.2*sex;
     ffm_ref(3,_)   = 15.72*(1 - sex) + 14.86*sex;   
-    ffm_ref(4,_)   = 14.10*(1 - sex) + 16.17*sex;  
-    ffm_ref(5,_)   = 17.09*(1 - sex) + 16.06*sex;  
-    ffm_ref(6,_)   = 17.40*(1 - sex) + 18.11*sex; 
-    ffm_ref(7,_)   = 19.88*(1 - sex) + 15.44*sex;  
-    ffm_ref(8,_)   = 23.36*(1 - sex) + 23.64*sex; 
-    ffm_ref(9,_)   = 23.86*(1 - sex) + 21.64*sex; 
-    ffm_ref(10,_)  = 27.79*(1 - sex) + 26.45*sex;  
-    ffm_ref(11,_)  = 31.88*(1 - sex) + 28.45*sex; 
-    ffm_ref(12,_)  = 34.01*(1 - sex) + 34.22*sex; 
-    ffm_ref(13,_)  = 34.92*(1 - sex) + 33.17*sex;  
-    ffm_ref(14,_)  = 39.78*(1 - sex) + 31.72*sex;
-    ffm_ref(15,_)  = 42.12*(1 - sex) + 33.64*sex;  
+    ffm_ref(4,_)   = 17.06*(1 - sex) + 15.61*sex;  
+    ffm_ref(5,_)   = 18.91*(1 - sex) + 17.81*sex;  
+    ffm_ref(6,_)   = 20.53*(1 - sex) + 19.90*sex; 
+    ffm_ref(7,_)   = 23.33*(1 - sex) + 21.90*sex; 
+    ffm_ref(8,_)   = 25.40*(1 - sex) + 24.91*sex; 
+    ffm_ref(9,_)   = 28.67*(1 - sex) + 29.24*sex; 
+    ffm_ref(10,_)  = 33.11*(1 - sex) + 32.69*sex;  
+    ffm_ref(11,_)  = 38.75*(1 - sex) + 35.09*sex; 
+    ffm_ref(12,_)  = 42.32*(1 - sex) + 36.61*sex; 
+    ffm_ref(13,_)  = 45.21*(1 - sex) + 38.79*sex;  
+    ffm_ref(14,_)  = 47.15*(1 - sex) + 39.76*sex;
+    ffm_ref(15,_)  = 48.38*(1 - sex) + 39.98*sex;  
     ffm_ref(16,_)  = 52.17*(1 - sex) + 42.96*sex;
  
  NumericVector ffm_ref_t(nind);
@@ -200,23 +194,23 @@ NumericVector Child::FFMReference(NumericVector t){
 
 NumericVector Child::FMReference(NumericVector t){
    /* return fm_beta0 + fm_beta1*t;*/
-   NumericMatrix fm_ref(17,nind);
+NumericMatrix fm_ref(17,nind);
     fm_ref(0,_)   = 2.456*(1-sex)+ 2.433*sex;
     fm_ref(1,_)   = 2.576*(1 - sex) + 2.606*sex;
     fm_ref(2,_)   = 2.7*(1 - sex) + 2.8*sex;
     fm_ref(3,_)   = 3.66*(1 - sex) + 4.47*sex;
-    fm_ref(4,_)   = 2.04*(1 - sex) + 2.89*sex;    
-    fm_ref(5,_)   = 2.39*(1 - sex) + 2.69*sex;   
-    fm_ref(6,_)   = 2.19*(1 - sex) + 3.02*sex;
-    fm_ref(7,_)   = 2.54*(1 - sex) + 2.22*sex;    
-    fm_ref(8,_)   = 2.96*(1 - sex) + 3.95*sex;
-    fm_ref(9,_)   = 2.80*(1 - sex) + 3.62*sex;  
-    fm_ref(10,_)  = 3.22*(1 - sex) + 4.36*sex;
-    fm_ref(11,_)  = 3.42*(1 - sex) + 4.38*sex; 
-    fm_ref(12,_)  = 3.83*(1 - sex) + 5.46*sex;
-    fm_ref(13,_)  = 4.03*(1 - sex) + 5.17*sex; 
-    fm_ref(14,_)  = 4.44*(1 - sex) + 4.94*sex;
-    fm_ref(15,_)  = 4.65*(1 - sex) + 5.19*sex; 
+    fm_ref(4,_)   = 3.49*(1 - sex) + 3.92*sex;    
+    fm_ref(5,_)   = 3.69*(1 - sex) + 4.45*sex;   
+    fm_ref(6,_)   = 3.91*(1 - sex) + 4.86*sex;
+    fm_ref(7,_)   = 4.38*(1 - sex) + 5.11*sex;    
+    fm_ref(8,_)   = 4.64*(1 - sex) + 5.94*sex;
+    fm_ref(9,_)   = 5.30*(1 - sex) + 7.22*sex;  
+    fm_ref(10,_)  = 6.30*(1 - sex) + 8.52*sex;
+    fm_ref(11,_)  = 7.76*(1 - sex) + 9.67*sex; 
+    fm_ref(12,_)  = 8.68*(1 - sex) + 9.81*sex;
+    fm_ref(13,_)  = 9.37*(1 - sex) + 10.80*sex; 
+    fm_ref(14,_)  = 9.94*(1 - sex) + 11.04*sex;
+    fm_ref(15,_)  = 10.13*(1 - sex) + 10.81*sex; 
     fm_ref(16,_)  = 13.35*(1 - sex) + 15.89*sex;
  NumericVector fm_ref_t(nind);
  int jmin;
@@ -236,8 +230,6 @@ NumericVector Child::FMReference(NumericVector t){
 }
   return fm_ref_t;
 }
-
-
 
 NumericVector Child::IntakeReference(NumericVector t){
     NumericVector EB      = EB_impact(t);
@@ -384,8 +376,6 @@ void Child::getParameters(void){
     tauA1     = 1.0*(1 - sex)  + 1.0*sex;
     tauB1     = 0.94*(1 - sex) + 0.94*sex;
     tauD1     = 0.69*(1 - sex) + 0.69*sex;
-  // BMI Table
-  
 }
 
 
