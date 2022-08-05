@@ -73,11 +73,10 @@
 #include "child_weight.h"
 
 //Default (classic) constructor for energy matrix
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
+Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
-    bmi   = input_bmi;
     bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
