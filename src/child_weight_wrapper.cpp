@@ -119,7 +119,7 @@ NumericMatrix intake_reference_wrapper(NumericVector age, NumericVector sex, Num
 }
 
 // [[Rcpp::export]]
-List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat,){
+List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat){
     
     //Input empty matrices
     NumericMatrix EI(1,1);
