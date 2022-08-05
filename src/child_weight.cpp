@@ -88,12 +88,11 @@ Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector inp
 }
 
 //Constructor which uses Richard's curve with the parameters of https://en.wikipedia.org/wiki/Generalised_logistic_function
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, double input_K,
+Child::Child(NumericVector input_age, NumericVector input_sex,  NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, double input_K,
              double input_Q, double input_A, double input_B, double input_nu, double input_C, 
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
-    bmi   = input_bmi;
     bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
