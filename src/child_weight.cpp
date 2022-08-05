@@ -73,10 +73,12 @@
 #include "child_weight.h"
 
 //Default (classic) constructor for energy matrix
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
+Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
+    bmi   = input_bmi;
+    bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
     dt    = input_dt;
@@ -87,11 +89,13 @@ Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector inp
 }
 
 //Constructor which uses Richard's curve with the parameters of https://en.wikipedia.org/wiki/Generalised_logistic_function
-Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_FFM, NumericVector input_FM, double input_K,
+Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmi, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, double input_K,
              double input_Q, double input_A, double input_B, double input_nu, double input_C, 
              double input_dt, bool checkValues){
     age   = input_age;
     sex   = input_sex;
+    bmi   = input_bmi;
+    bmiCat = input_bmiCat;
     FM    = input_FM;
     FFM   = input_FFM;
     dt    = input_dt;
@@ -199,8 +203,7 @@ return ffm_ref_t;
 
 NumericVector Child::FMReference(NumericVector t){
    /* return fm_beta0 + fm_beta1*t;*/
-NumericMatrix fm_ref(17,nind);
-    NumericVector under = ifelse(bmiCat == 1, 1.0, 0.0);
+NumericVector under = ifelse(bmiCat == 1, 1.0, 0.0);
 NumericVector normal = ifelse(bmiCat == 2, 1.0, 0.0);
 NumericVector over = ifelse(bmiCat == 3, 1.0, 0.0);
 NumericVector obese = ifelse(bmiCat == 4, 1.0, 0.0);
