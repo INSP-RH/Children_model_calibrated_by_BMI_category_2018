@@ -1,26 +1,27 @@
 //
-//  adult_weight_wrapper.cpp
-//  
+//  child_weight_wrapper.cpp
+//
 //  This is a function that uses Rcpp to return
-//  weight change for adults using the dynamic
+//  weight change for children using the dynamic
 //  weight model by Kevin D. Hall et al.
 //
 //  Input:
-//  bw              .-  Body weight (kg).
-//  ht              .-  Height (m).
-//  age             .-  Years since individual first arrived to Earth.
-//  sex             .-  Either 1 = "female" or 0 = "male".
-//  EIchange        .-  Change in energy intake (kcal).
-//  NAchange        .-  Change in sodium consumption (mg).
-//  PAL             .-  Physical activity level. (Between 1.4 and 2.4)
-//  pcarb           .-  Proportion of carbohydrates from diet throughout the time the model runs.
-//  pcarb_baseline  .-  Proportion of carbohydrates from diet at baseline.
-//  dt              .-  Time step used to solve the ODE system numerically.
-//  extradata       .-  Energy intake at baseline (kcal).
-//  checkValues     .-  Verify values of lean and fat mass are possible values. (Not infinite nor NA)
-//  isEnergy        .-  Boolean to determine if energy intake at baseline is given
-//  input_EI        .-  Energy intake (kcal). 
-//  input_fat       .-  Fat Mass (kg) of the individual.
+//  age             .-  Years since individual first arrived to Earth
+//  sex             .-  Either 1 = "female" or 0 = "male"
+//  FFM             .-  Fat Free Mass (kg) of the individual
+//  FM              .-  Fat Mass (kg) of the individual
+//  input_EIntake   .-  Energy intake (kcal) of individual per day
+//  days            .-  Days to model (integer)
+//  dt              .-  Time step used to solve the ODE system numerically
+//  K               .-  Richardson parameter
+//  Q               .-  Richardson parameter
+//  A               .-  Richardson parameter
+//  B               .-  Richardson parameter
+//  nu              .-  Richardson parameter
+//  C               .-  Richardson parameter
+//  Note:
+//  Weight = FFM + FM. No extracellular fluid or glycogen is considered
+//  Please see child_weight.hpp for additional information
 //
 //  Authors:
 //  Dalia Camacho-García-Formentí
@@ -28,20 +29,26 @@
 //
 // References:
 //
-//  Chow, Carson C, and Kevin D Hall. 2008. “The Dynamics of Human Body Weight Change.” PLoS Comput Biol 4 (3):e1000045.
+//  Deurenberg, Paul, Jan A Weststrate, and Jaap C Seidell. 1991. “Body Mass Index as a Measure of Body Fatness:
+//      Age-and Sex-Specific Prediction Formulas.” British Journal of Nutrition 65 (2). Cambridge University Press: 105–14.
 //
-//  Hall, Kevin D. 2010. “Predicting Metabolic Adaptation, Body Weight Change, and Energy Intake in Humans.”
-//      American Journal of Physiology-Endocrinology and Metabolism 298 (3). Am Physiological Soc: E449–E466.
+//  Ellis, Kenneth J, Roman J Shypailo, Steven A Abrams, and William W Wong. 2000. “The Reference Child and Adolescent Models of
+//      Body Composition: A Contemporary Comparison.” Annals of the New York Academy of Sciences 904 (1). Wiley Online Library: 374–82.
 //
-//  Hall, Kevin D, and Peter N Jordan. 2008. “Modeling Weight-Loss Maintenance to Help Prevent Body Weight Regain.”
-//      The American Journal of Clinical Nutrition 88 (6). Am Soc Nutrition: 1495–1503.
+//  Fomon, Samuel J, Ferdinand Haschke, Ekhard E Ziegler, and Steven E Nelson. 1982.
+//      “Body Composition of Reference Children from Birth to Age 10 Years.” The American Journal of
+//      Clinical Nutrition 35 (5). Am Soc Nutrition: 1169–75.
 //
-//  Hall, Kevin D, Gary Sacks, Dhruva Chandramohan, Carson C Chow, Y Claire Wang, Steven L Gortmaker, and Boyd A Swinburn. 2011.
-//      “Quantification of the Effect of Energy Imbalance on Bodyweight.” The Lancet 378 (9793). Elsevier: 826–37.
+//  Hall, Kevin D, Nancy F Butte, Boyd A Swinburn, and Carson C Chow. 2013. “Dynamics of Childhood Growth
+//      and Obesity: Development and Validation of a Quantitative Mathematical Model.” The Lancet Diabetes & Endocrinology 1 (2). Elsevier: 97–105.
 //
-//  Mifflin, Mark D, Sachiko T St Jeor, Lisa A Hill, Barbara J Scott, Sandra A Daugherty, and YO Koh. 1990.
-//      “A New Predictive Equation for Resting Energy Expenditure in Healthy Individuals.” The American Journal of Clinical Nutrition 51 (2).
-//      Am Soc Nutrition: 241–47.
+//  Haschke, F. 1989. “Body Composition During Adolescence.” Body Composition Measurements in Infants and Children.
+//      Ross Laboratories Columbus, OH, 76–83.
+//
+//  Katan, Martijn B, Janne C De Ruyter, Lothar DJ Kuijper, Carson C Chow, Kevin D Hall, and Margreet R Olthof. 2016.
+//      “Impact of Masked Replacement of Sugar-Sweetened with Sugar-Free Beverages on Body Weight Increases with Initial Bmi:
+//      Secondary Analysis of Data from an 18 Month Double–Blind Trial in Children.” PloS One 11 (7). Public Library of Science: e0159771.
+//
 //
 //----------------------------------------------------------------------------------------
 // License: MIT
@@ -62,51 +69,71 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //----------------------------------------------------------------------------------------
 
+
+
+
 #include <Rcpp.h>
-#include "adult_weight.h"
+#include "child_weight.h"
 
 // [[Rcpp::export]]
-List adult_weight_wrapper(NumericVector bw, NumericVector ht, NumericVector age,
-                          NumericVector sex, NumericMatrix EIchange,
-                          NumericMatrix NAchange, NumericVector PAL,
-                          NumericVector pcarb_base, NumericVector pcarb, double dt,
-                          double days, bool checkValues){
+List child_weight_wrapper(NumericVector age, NumericVector sex, NumericVector bmi, NumericVector bmiCat, NumericVector FFM, NumericVector FM, NumericMatrix input_EIntake, double days, double dt, bool checkValues){
     
     //Create new adult with characteristics
-    Adult Person (bw,  ht, age, sex, EIchange, NAchange, PAL, pcarb,  pcarb_base, dt, checkValues);
+    Child Person (age,  sex, bmi, bmiCat, FFM, FM, input_EIntake, dt, checkValues);
     
     //Run model using RK4
-    return Person.rk4(days);
+    return Person.rk4(days - 1); //days - 1 to account for extra day (c++ indexing starts in 0; R in 1)
     
 }
 
 // [[Rcpp::export]]
-List adult_weight_wrapper_EI(NumericVector bw, NumericVector ht, NumericVector age,
-                          NumericVector sex, NumericMatrix EIchange,
-                          NumericMatrix NAchange, NumericVector PAL,
-                          NumericVector pcarb_base, NumericVector pcarb, double dt,
-                             NumericVector extradata, double days, bool checkValues, bool isEnergy){
+List child_weight_wrapper_richardson(NumericVector age, NumericVector sex, NumericVector bmi, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double K, double Q, double A, double B, double nu, double C, double days, double dt, bool checkValues){
     
     //Create new adult with characteristics
-    Adult Person (bw,  ht, age, sex, EIchange, NAchange, PAL, pcarb,  pcarb_base, dt, extradata, checkValues, isEnergy);
+    Child Person (age,  sex, bmi, bmiCat, FFM, FM, K, Q, A, B, nu, C, dt, checkValues);
     
     //Run model using RK4
-    return Person.rk4(days);
+    return Person.rk4(days - 1); //days - 1 to account for extra day (c++ indexing starts in 0; R in 1)
     
 }
 
 // [[Rcpp::export]]
-List adult_weight_wrapper_EI_fat(NumericVector bw, NumericVector ht, NumericVector age,
-                             NumericVector sex, NumericMatrix EIchange,
-                             NumericMatrix NAchange, NumericVector PAL,
-                             NumericVector pcarb_base, NumericVector pcarb, double dt,
-                             NumericVector input_EI, NumericVector input_fat,
-                                 double days, bool checkValues){
+NumericMatrix intake_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmi, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double days,  double dt){
+    
+    //Energy intake input empty matrix
+    NumericMatrix EI(1,1);
     
     //Create new adult with characteristics
-    Adult Person (bw,  ht, age, sex, EIchange, NAchange, PAL, pcarb,  pcarb_base, dt, input_EI, input_fat, checkValues);
+    Child Person (age,  sex, bmi, bmiCat, FFM, FM, EI, dt, false);
     
-    //Run model using RK4
-    return Person.rk4(days);
+    //Energy matrix
+    NumericMatrix EnergyIntake(age.size(), floor(days/dt) + 1);
+    
+    //Get energy matrix
+    for (double i = 0; i < floor(days/dt) + 1; i++){
+        EnergyIntake(_,i) = Person.IntakeReference(age + dt*i/365.0);
+    }
+    
+    return EnergyIntake;
+    
+}
+
+// [[Rcpp::export]]
+List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmi, NumericVector bmiCat,){
+    
+    //Input empty matrices
+    NumericMatrix EI(1,1);
+    NumericMatrix inputFM(1,1);
+    NumericMatrix inputFFM(1,1);
+    
+    //Create new adult with characteristics
+    Child Person (age,  sex, bmi, bmiCat, inputFFM, inputFM, EI, 1.0, false);
+    
+    //Energy matrix
+    NumericVector FM  = Person.FMReference(age, bmi);
+    NumericVector FFM = Person.FFMReference(age, bmi);
+    
+    return List::create(Named("FM")  = FM,
+                        Named("FFM") = FFM);
     
 }
