@@ -158,7 +158,7 @@ NumericVector Child::Delta(NumericVector t){
 
 
 
-NumericVector FFMReference(NumericVector t, NumericVector sex, NumericVector bmiCat){
+NumericVector Child::FFMReference(NumericVector t, NumericVector sex, NumericVector bmiCat){
 
 int nind     = sex.size();
 NumericVector under = ifelse(bmiCat == 1, 1.0, 0.0);
@@ -205,7 +205,7 @@ return ffm_ref_t;
 }
 
 
-NumericVector FMReference(NumericVector t, NumericVector sex, NumericVector bmiCat){
+NumericVector Child::FMReference(NumericVector t, NumericVector sex, NumericVector bmiCat){
 
 int nind     = sex.size();
 NumericVector under = ifelse(bmiCat == 1, 1.0, 0.0);
