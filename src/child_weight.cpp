@@ -203,7 +203,7 @@ return ffm_ref_t;
 NumericVector Child::FMReference(NumericVector t){
    /* return fm_beta0 + fm_beta1*t;*/
 NumericVector under = ifelse(bmiCat == 1, 1.0, 0.0);
-NumericVector normal = ifelse(bmiCat == 2, 1.0, 0.0);
+NumericVector normales = ifelse(bmiCat == 2, 1.0, 0.0);
 NumericVector over = ifelse(bmiCat == 3, 1.0, 0.0);
 NumericVector obese = ifelse(bmiCat == 4, 1.0, 0.0);
 
