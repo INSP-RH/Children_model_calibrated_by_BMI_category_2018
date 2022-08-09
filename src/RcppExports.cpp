@@ -130,7 +130,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type FM(FMSEXP);
     Rcpp::traits::input_parameter< double >::type days(daysSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
-    rcpp_result_gen = Rcpp::wrap(intake_reference_wrapper(age, sex, bmiCat FFM, FM, days, dt));
+    rcpp_result_gen = Rcpp::wrap(intake_reference_wrapper(age, sex, bmiCat, FFM, FM, days, dt));
     return rcpp_result_gen;
 END_RCPP
 }
