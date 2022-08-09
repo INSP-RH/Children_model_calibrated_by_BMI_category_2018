@@ -52,7 +52,7 @@
 #' @keywords internal
 #' @export
 
-child_reference_FFMandFM <- function(age, sex){
+child_reference_FFMandFM <- function(age, sex, bmiCat){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
@@ -81,5 +81,5 @@ child_reference_FFMandFM <- function(age, sex){
   }
   
   #Get c++ function
-  mass_reference_wrapper(age, newsex)
+  mass_reference_wrapper(age, newsex, bmiCat)
 }
