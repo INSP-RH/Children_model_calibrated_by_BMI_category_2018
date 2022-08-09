@@ -76,7 +76,7 @@ END_RCPP
 }
 // child_weight_wrapper
 List child_weight_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, NumericMatrix input_EIntake, double days, double dt, bool checkValues);
-RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCat, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
+RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
