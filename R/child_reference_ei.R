@@ -60,7 +60,7 @@
 #' @keywords internal
 #' @export
 
-child_reference_EI <- function(age, sex, FM, FFM, days, dt = 1){
+child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
@@ -100,5 +100,5 @@ child_reference_EI <- function(age, sex, FM, FFM, days, dt = 1){
   }
   
   #Get c++ function
-  t(intake_reference_wrapper(age, newsex, FM, FFM, days, dt))
+  t(intake_reference_wrapper(age, newsex, bmiCat, FM, FFM, days, dt))
 }
