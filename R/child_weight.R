@@ -139,7 +139,7 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
                    is.na(richardsonparams$A) || is.na(richardsonparams$B) || 
                    is.na(richardsonparams$nu) || is.na(richardsonparams$C))){
     message("Creating default energy intake for healthy child.")
-    EI <- child_reference_EI(age, sex, FM, FFM, days, dt) 
+    EI <- child_reference_EI(age, sex, bmiCat, FM, FFM, days, dt) 
   }
   
   #Change sex to numeric for c++
@@ -149,10 +149,10 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
   #Choose between richardson curve or given energy intake
   if (!is.na(EI[1])){
     message("Using user's energy intake")
-    wt <- child_weight_wrapper(age, newsex, FFM, FM, as.matrix(EI), days, dt, checkValues)  
+    wt <- child_weight_wrapper(age, newsex, bmiCat, FFM, FM, as.matrix(EI), days, dt, checkValues)  
   } else {
     message("Using Richardson's function")
-    wt <- child_weight_wrapper_richardson(age, newsex, FFM, FM, richardsonparams$K, 
+    wt <- child_weight_wrapper_richardson(age, newsex, bmiCat, FFM, FM, richardsonparams$K, 
                                richardsonparams$Q, richardsonparams$A, 
                                richardsonparams$B, richardsonparams$nu, 
                                richardsonparams$C, days, dt, checkValues)
