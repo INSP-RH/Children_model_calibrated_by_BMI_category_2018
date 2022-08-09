@@ -95,8 +95,8 @@
 #' @export
 #'
 
-child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, sex)$FM, 
-                         FFM = child_reference_FFMandFM(age, sex)$FFM, 
+child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, sex, bmiCat)$FM, 
+                         FFM = child_reference_FFMandFM(age, sex, bmiCat)$FFM, 
                          EI = NA, 
                          richardsonparams = list(K = NA, Q = NA, B = NA, A = NA, nu = NA, C = NA),
                          days = 365, dt = 1, checkValues = TRUE){
