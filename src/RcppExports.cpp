@@ -76,7 +76,7 @@ END_RCPP
 }
 // child_weight_wrapper
 List child_weight_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, NumericMatrix input_EIntake, double days, double dt, bool checkValues);
-RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
+RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCat, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -95,7 +95,7 @@ END_RCPP
 }
 // child_weight_wrapper_richardson
 List child_weight_wrapper_richardson(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double K, double Q, double A, double B, double nu, double C, double days, double dt, bool checkValues);
-RcppExport SEXP _bw_child_weight_wrapper_richardson(SEXP ageSEXP, SEXP sexSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP KSEXP, SEXP QSEXP, SEXP ASEXP, SEXP BSEXP, SEXP nuSEXP, SEXP CSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
+RcppExport SEXP _bw_child_weight_wrapper_richardson(SEXP ageSEXP, SEXP sexSEXP,  SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP KSEXP, SEXP QSEXP, SEXP ASEXP, SEXP BSEXP, SEXP nuSEXP, SEXP CSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -119,7 +119,7 @@ END_RCPP
 }
 // intake_reference_wrapper
 NumericMatrix intake_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double days, double dt);
-RcppExport SEXP _bw_intake_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP daysSEXP, SEXP dtSEXP) {
+RcppExport SEXP _bw_intake_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP daysSEXP, SEXP dtSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -136,7 +136,7 @@ END_RCPP
 }
 // mass_reference_wrapper
 List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat);
-RcppExport SEXP _bw_mass_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP) {
+RcppExport SEXP _bw_mass_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
