@@ -165,10 +165,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_bw_adult_weight_wrapper", (DL_FUNC) &_bw_adult_weight_wrapper, 12},
     {"_bw_adult_weight_wrapper_EI", (DL_FUNC) &_bw_adult_weight_wrapper_EI, 14},
     {"_bw_adult_weight_wrapper_EI_fat", (DL_FUNC) &_bw_adult_weight_wrapper_EI_fat, 14},
-    {"_bw_child_weight_wrapper", (DL_FUNC) &_bw_child_weight_wrapper, 8},
-    {"_bw_child_weight_wrapper_richardson", (DL_FUNC) &_bw_child_weight_wrapper_richardson, 13},
-    {"_bw_intake_reference_wrapper", (DL_FUNC) &_bw_intake_reference_wrapper, 6},
-    {"_bw_mass_reference_wrapper", (DL_FUNC) &_bw_mass_reference_wrapper, 2},
+    {"_bw_child_weight_wrapper", (DL_FUNC) &_bw_child_weight_wrapper, 9},
+    {"_bw_child_weight_wrapper_richardson", (DL_FUNC) &_bw_child_weight_wrapper_richardson, 14},
+    {"_bw_intake_reference_wrapper", (DL_FUNC) &_bw_intake_reference_wrapper, 7},
+    {"_bw_mass_reference_wrapper", (DL_FUNC) &_bw_mass_reference_wrapper, 3},
     {"_bw_EnergyBuilder", (DL_FUNC) &_bw_EnergyBuilder, 3},
     {NULL, NULL, 0}
 };
