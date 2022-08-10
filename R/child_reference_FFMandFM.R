@@ -72,12 +72,18 @@ child_reference_FFMandFM <- function(age, sex, bmiCat){
   if (length(which(!(sex %in% c("male","female")))) > 0){
     stop(paste0("Invalid sex. Please specify either 'male' of 'female'"))
   }
+ 
   
   #Check that we don't go over 18 yrs where we have no data
   if (max(age) > 18){
     warning(paste0("Some individuals reach age > 18 before model stops. Results",
                    " might not be accurate for adults. Please use adult_weight",
                    " instead."))
+  }
+  
+  #Check bmiCat is 1-4
+  if (!(bmiCat %in% c(1,2,3,4))){
+    stop("Invalid bmi category value (bmiCat). Please specify 1 for underweight, 2 for normal weight, 3 for overweight, or 4 for obesity.")
   }
   
   #Get c++ function
