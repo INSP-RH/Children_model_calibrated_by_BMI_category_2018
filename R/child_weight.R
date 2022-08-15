@@ -147,7 +147,7 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
   newsex[which(sex == "female")] <- 1
   
   #Check bmiCat is 1-4
-  if (!(bmiCat %in% c(1,2,3,4))){
+  if (  any( !(bmiCat %in% c(1,2,3,4)) )  ){
     stop("Invalid bmi category value (bmiCat). Please specify 1 for underweight, 2 for normal weight, 3 for overweight, or 4 for obesity.")
   }
   
