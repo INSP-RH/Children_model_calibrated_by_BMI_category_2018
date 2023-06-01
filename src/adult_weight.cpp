@@ -67,7 +67,7 @@
 //Default Constructor for an Adult.
 Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
              NumericVector sexstring, NumericMatrix input_EIchange,
-             NumericMatrix input_NAchange, NumericVector physicalactivity,
+             NumericMatrix input_NAchange, NumericMatrix physicalactivity,
              NumericVector percentc, NumericVector percentb, double input_dt, bool checkValues){
     
     //Build model from parameters
@@ -79,7 +79,7 @@ Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
 //Constructor with energy intake vector or fat vector
 Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
              NumericVector sexstring, NumericMatrix input_EIchange,
-             NumericMatrix input_NAchange, NumericVector physicalactivity,
+             NumericMatrix input_NAchange, NumericMatrix physicalactivity,
              NumericVector percentc, NumericVector percentb, double input_dt, NumericVector extradata,
              bool checkValues, bool isEnergy){
     
@@ -93,7 +93,7 @@ Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
 //Constructor with energy intake vector and fat vector
 Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
              NumericVector sexstring, NumericMatrix input_EIchange,
-             NumericMatrix input_NAchange, NumericVector physicalactivity,
+             NumericMatrix input_NAchange, NumericMatrix physicalactivity,
              NumericVector percentc, NumericVector percentb, double input_dt, NumericVector input_EI,
              NumericVector input_fat, bool checkValues){
     
@@ -107,7 +107,7 @@ Adult::Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
 //Function to build a new Adult
 void Adult::build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                   NumericVector sexstring, NumericMatrix input_EIchange,
-                  NumericMatrix input_NAchange, NumericVector physicalactivity,
+                  NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                   NumericVector percentc, NumericVector percentb, double input_dt, bool checkValues){
     
     //Assign parameters
@@ -139,7 +139,7 @@ void Adult::build(NumericVector weight, NumericVector height, NumericVector age_
 //Function to build a new Adult when input_EIintake and fat are included
 void Adult::build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                   NumericVector sexstring, NumericMatrix input_EIchange,
-                  NumericMatrix input_NAchange, NumericVector physicalactivity,
+                  NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                   NumericVector percentc, NumericVector percentb, double input_dt,
                   NumericVector extradata, bool checkValues, bool isEnergy){
     
@@ -186,7 +186,7 @@ void Adult::build(NumericVector weight, NumericVector height, NumericVector age_
 //Function to build a new Adult when input_EIintake is included
 void Adult::build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                   NumericVector sexstring, NumericMatrix input_EIchange,
-                  NumericMatrix input_NAchange, NumericVector physicalactivity,
+                  NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                   NumericVector percentc, NumericVector percentb, double input_dt,
                   NumericVector input_EI, NumericVector input_fat, bool checkValues){
     
@@ -268,7 +268,7 @@ void Adult::getRMR(void){
 void Adult::getCaloricSteadyState(void){
     //These estimation assumes Energy Intake = Energy Expenditure.
     //Energy is returned in kcal
-    steadystate = rmr*PAL;
+    steadystate = rmr*PAL(0,_);  //Check when running for the first tiem it might me PAL(_,0)
 }
 
 void Adult::getATinit(void){
@@ -284,7 +284,7 @@ void Adult::getEnergy(void){
 
 //Calculate parameter delta
 void Adult::getDelta(void){
-    delta =  ((1.0 - betaTEF)*PAL - 1.0)*rmr/bw;
+    delta =  ((1.0 - betaTEF)*PAL - 1.0)*rmr/bw; 
 }
 
 //Get extracellular water by Silva's equation
@@ -352,7 +352,7 @@ void Adult::getK(){
      RMR is from the Mifflin-St Jeor equation. The physical activity pa- rameter, delta, at the baseline
      steady state is determined by equation 8 and therefore you can solve for K.
      */
-    K = (rmr * PAL) - gammaL * lean - gammaF * fat - delta * bw;
+    K = (rmr * PAL(0,_)) - gammaL * lean - gammaF * fat - ((1.0 - betaTEF)*PAL(0,_) - 1.0)*rmr/bw * bw; //AQUI! Check when running for the first tiem it might me PAL(_,0)
 }
 
 //Get fat mass as function of lean tissue
