@@ -42,20 +42,20 @@ public:
     //Constructor for when initial energy intake is estimated by the model
     Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
           NumericVector sexstring, NumericMatrix input_EIchange,
-          NumericMatrix input_NAchange, NumericVector physicalactivity,
+          NumericMatrix input_NAchange, NumericMatrix physicalactivity,
           NumericVector percentc, NumericVector percentb, double dt, bool checkValues);
     
     //Constructor for when initial energy or initial fat intake is added by user
     Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
           NumericVector sexstring, NumericMatrix input_EIchange,
-          NumericMatrix input_NAchange, NumericVector physicalactivity,
+          NumericMatrix input_NAchange, NumericMatrix physicalactivity,
           NumericVector percentc, NumericVector percentb, double dt,
           NumericVector extradata, bool checkValues, bool isEnergy);
     
     //Constructor for when initial energy intake and initial fat is added by user
     Adult(NumericVector weight, NumericVector height, NumericVector age_yrs,
           NumericVector sexstring, NumericMatrix input_EIchange,
-          NumericMatrix input_NAchange, NumericVector physicalactivity,
+          NumericMatrix input_NAchange, NumericMatrix physicalactivity,
           NumericVector percentc, NumericVector percentb, double dt,
           NumericVector input_EI, NumericVector input_fat, bool checkValues);
     
@@ -69,7 +69,7 @@ public:
     NumericVector age;             //Age (yrs)
     NumericVector sex;             //0 = "male"; 1 = "female"
     NumericVector EI;              //Energy intake (kcal)
-    NumericVector PAL;             //Physical Activity Level PAL
+    NumericMatrix PAL;             //Physical Activity Level PAL
     NumericVector fat;             //Fat mass at baseline (kg)
     NumericVector lean;            //Lean mass at baseline (kg)
     NumericVector steadystate;     //Steady state of energy intake for no weight change according to Miffin % St Jeor (kcal)
@@ -139,16 +139,16 @@ private:
     void getECFinit(void);
     void build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                NumericVector sexstring, NumericMatrix input_EIchange,
-               NumericMatrix input_NAchange, NumericVector physicalactivity,
+               NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                NumericVector percentc, NumericVector percentb, double dt, bool checkValues);
     void build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                NumericVector sexstring, NumericMatrix input_EIchange,
-               NumericMatrix input_NAchange, NumericVector physicalactivity,
+               NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                NumericVector percentc, NumericVector percentb, double dt, NumericVector extradata,
                bool checkValues, bool isEnergy);
     void build(NumericVector weight, NumericVector height, NumericVector age_yrs,
                NumericVector sexstring, NumericMatrix input_EIchange,
-               NumericMatrix input_NAchange, NumericVector physicalactivity,
+               NumericMatrix input_NAchange, NumericMatrix physicalactivity,
                NumericVector percentc, NumericVector percentb, double dt, NumericVector input_EI,
                NumericVector input_fat,bool checkValues);
     NumericVector TotalIntake (double t);
