@@ -104,7 +104,7 @@ adult_weight <- function(bw, ht, age, sex,
                          EIchange = matrix(0, ncol = abs(ceiling(days/dt)), nrow = length(bw)), 
                          NAchange = matrix(0, ncol = abs(ceiling(days/dt)), nrow = length(bw)), 
                          EI = NA, fat = rep(NA, length(bw)),
-                         PAL = rep(1.5, length(bw)), 
+                         PAL = matrix(1.5, ncol = abs(ceiling(days/dt)), nrow= length(bw)), 
                          pcarb_base = rep(0.5, length(bw)), 
                          pcarb = pcarb_base,  days = 365, dt = 1,
                          checkValues = TRUE){
@@ -117,13 +117,19 @@ adult_weight <- function(bw, ht, age, sex,
     NAchange <- matrix(NAchange, nrow = 1)
   }
   
-  if (any(dim(EIchange) != dim(NAchange))){
-    stop("Dimension mismatch. NAchange and EIchange don't have the same dimensions.")
+   if (is.vector(PAL)){
+    PAL <- matrix(PAL, nrow = 1)
+  }  
+  
+  if ( (any(dim(EIchange) != dim(NAchange)) | (any(dim(EIchange) != dim(PAL))  )   ){
+    stop("Dimension mismatch. NAchange and (EIchange or PAL) don't have the same dimensions.")
   }
+  
+  
   
   #Check that all parameters have same length
   if (length(bw) != length(ht)  || length(bw) != length(age) || 
-      length(bw) != length(sex) || length(bw) != length(PAL) || 
+      length(bw) != length(sex) || length(bw) != nrow(PAL) || 
       length(bw) != length(pcarb_base) || length(bw) != length(pcarb) ||
       length(bw) != length(fat)){
     stop(paste0("Dimension mismatch. bw, ht, age, sex, PAL, fat, pcarb_base", 
@@ -137,14 +143,14 @@ adult_weight <- function(bw, ht, age, sex,
   }
   
   #Check that EIchange has the same number of rows as the length of bw
-  if (nrow(EIchange) != length(bw)){
+  if ( nrow(EIchange) != length(bw) ){
     stop(paste("Dimension mismatch. EIchange must have the", 
                "same amount of rows as individuals."))
   }
   
   #Check that they have as many columns as days
-  if (ncol(EIchange) != ceiling(days/dt)){
-    warning(paste("Dimension mismatch. EIchange and NAchange must have", 
+  if ( ncol(EIchange) != ceiling(days/dt) ){
+    warning(paste("Dimension mismatch. EIchange, PAL and NAchange must have", 
                   ceiling(days/dt), "columns"))
   }
 
@@ -205,6 +211,7 @@ adult_weight <- function(bw, ht, age, sex,
   #Change because c++ takes them as transpose
   EIchange <- t(EIchange)
   NAchange <- t(NAchange)
+  PAL <- t(PAL)
   
   #Run C++ program to estimate weight there are 3 constructors depending
   #on if you have energy intake or fat intake or not.
