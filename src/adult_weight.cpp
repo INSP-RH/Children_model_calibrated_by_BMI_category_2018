@@ -284,7 +284,7 @@ void Adult::getEnergy(void){
 
 //Calculate parameter delta
 NumericVector Adult::getDelta(double t){
-    delta =  ((1.0 - betaTEF)*deltaPAL(t) - 1.0)*rmr/bw; 
+   return delta =  ((1.0 - betaTEF)*deltaPAL(t) - 1.0)*rmr/bw; 
 }
 
 //Get extracellular water by Silva's equation
