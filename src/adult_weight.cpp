@@ -283,7 +283,7 @@ void Adult::getEnergy(void){
 }
 
 //Calculate parameter delta
-NumericVector Adult::getDelta(t){
+NumericVector Adult::getDelta(double t){
     delta =  ((1.0 - betaTEF)*deltaPAL(t) - 1.0)*rmr/bw; 
 }
 
