@@ -121,7 +121,7 @@ adult_weight <- function(bw, ht, age, sex,
     PAL <- matrix(PAL, nrow = 1)
   }  
   
-  if ( (any(dim(EIchange) != dim(NAchange)) | (any(dim(EIchange) != dim(PAL))  )   ){
+if ((any(dim(EIchange) != dim(NAchange))) | (any(dim(EIchange) != dim(PAL)))) {
     stop("Dimension mismatch. NAchange and (EIchange or PAL) don't have the same dimensions.")
   }
   
