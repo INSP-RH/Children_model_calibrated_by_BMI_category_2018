@@ -68,7 +68,7 @@
 // [[Rcpp::export]]
 List adult_weight_wrapper(NumericVector bw, NumericVector ht, NumericVector age,
                           NumericVector sex, NumericMatrix EIchange,
-                          NumericMatrix NAchange, NumericVector PAL,
+                          NumericMatrix NAchange, NumericMatrix PAL,
                           NumericVector pcarb_base, NumericVector pcarb, double dt,
                           double days, bool checkValues){
     
@@ -83,7 +83,7 @@ List adult_weight_wrapper(NumericVector bw, NumericVector ht, NumericVector age,
 // [[Rcpp::export]]
 List adult_weight_wrapper_EI(NumericVector bw, NumericVector ht, NumericVector age,
                           NumericVector sex, NumericMatrix EIchange,
-                          NumericMatrix NAchange, NumericVector PAL,
+                          NumericMatrix NAchange, NumericMatrix PAL,
                           NumericVector pcarb_base, NumericVector pcarb, double dt,
                              NumericVector extradata, double days, bool checkValues, bool isEnergy){
     
@@ -98,7 +98,7 @@ List adult_weight_wrapper_EI(NumericVector bw, NumericVector ht, NumericVector a
 // [[Rcpp::export]]
 List adult_weight_wrapper_EI_fat(NumericVector bw, NumericVector ht, NumericVector age,
                              NumericVector sex, NumericMatrix EIchange,
-                             NumericMatrix NAchange, NumericVector PAL,
+                             NumericMatrix NAchange, NumericMatrix PAL,
                              NumericVector pcarb_base, NumericVector pcarb, double dt,
                              NumericVector input_EI, NumericVector input_fat,
                                  double days, bool checkValues){
