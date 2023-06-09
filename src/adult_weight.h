@@ -132,7 +132,7 @@ private:
     void getBaselineMass(void);
     void getCaloricSteadyState(void);
     void getEnergy(void);
-    void getDelta(void);
+    //void getDelta(void);
     void getK(void);
     void getCarbConstants(void);
     void getATinit(void);
@@ -157,8 +157,10 @@ private:
     NumericVector R(double t, NumericVector L, NumericVector G,
                     NumericVector AT, NumericVector ECF);
     NumericVector fatMass(NumericVector L);
+    NumericVector deltaPAL(double t);
     NumericVector deltaEI(double t);
     NumericVector deltaNA(double t);
+    NumericVector getDelta(double t);
     NumericVector TEF(double t);
     NumericVector dAT(double t, NumericVector AT);
     NumericVector dECF(double t, NumericVector ECF);
