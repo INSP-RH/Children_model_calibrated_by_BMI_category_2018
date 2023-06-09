@@ -131,7 +131,7 @@ void Adult::build(NumericVector weight, NumericVector height, NumericVector age_
     getBaselineMass();
     getCaloricSteadyState();
     getEnergy();
-    getDelta();
+   // getDelta(); //Check
     getK();
     getCarbConstants();
 }
@@ -178,7 +178,7 @@ void Adult::build(NumericVector weight, NumericVector height, NumericVector age_
         lean = bw - (ecfinit + fat + 3.7*G_base);
     }
     
-    getDelta();
+    //getDelta();
     getK();
     getCarbConstants();
 }
@@ -214,7 +214,7 @@ void Adult::build(NumericVector weight, NumericVector height, NumericVector age_
     fat    = input_fat;
     lean    = bw - (ecfinit + fat + 3.7*G_base);
 
-    getDelta();
+    //getDelta();
     getK();
     getCarbConstants();
 }
@@ -283,8 +283,8 @@ void Adult::getEnergy(void){
 }
 
 //Calculate parameter delta
-void Adult::getDelta(void){
-    delta =  ((1.0 - betaTEF)*PAL - 1.0)*rmr/bw; 
+void Adult::getDelta(t){
+    delta =  ((1.0 - betaTEF)*deltaPAL(t) - 1.0)*rmr/bw; 
 }
 
 //Get extracellular water by Silva's equation
@@ -371,7 +371,7 @@ NumericVector Adult::R(double t, NumericVector L, NumericVector G,
                        NumericVector AT, NumericVector ECF){
     NumericVector F      = fatMass(L);
     NumericVector weight = L + F + ECF + 3.7*(G);
-    NumericVector R3     = K + delta*weight + TEF(t) + AT - TotalIntake(t) + dG(t, G);
+    NumericVector R3     = K + getDelta(t)*weight + TEF(t) + AT - TotalIntake(t) + dG(t, G);
     return (R3 + gammaL*L + gammaF*F)/(alfa1 + alfa2*F);
 }
 
@@ -543,4 +543,10 @@ NumericVector Adult::deltaEI(double t){
 NumericVector Adult::deltaNA(double t){
     return NAchange(floor(t/dt),_);
 }
+
+
+//Change in sodiumxs
+NumericVector Adult::deltaPAL(double t){
+    return PAL(floor(t/dt),_);
+}  // Check
 
