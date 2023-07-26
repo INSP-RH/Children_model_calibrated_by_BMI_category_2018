@@ -178,7 +178,7 @@ ffm_ref(12,_)  = under*(34.01*(1 - sex) + 34.22*sex)   + normales*(42.32*(1 - se
 ffm_ref(13,_)  = under*(34.92*(1 - sex) + 33.17*sex)   + normales*(45.21*(1 - sex) + 38.79*sex)   + over*(50.02*(1 - sex) + 43.43*sex)  + obese*(55.97*(1 - sex) + 47.87*sex); // 15 years old
 ffm_ref(14,_)  = under*(39.78*(1 - sex) + 31.72*sex)   + normales*(47.15*(1 - sex) + 39.76*sex)   + over*(53.73*(1 - sex) + 45.77*sex)  + obese*(58.31*(1 - sex) + 51.02*sex); // 16 years old
 ffm_ref(15,_)  = under*(42.12*(1 - sex) + 33.64*sex)   + normales*(48.38*(1 - sex) + 39.98*sex)   + over*(55.36*(1 - sex) + 45.29*sex)  + obese*(60.35*(1 - sex) + 50.60*sex); // 17 years old
-ffm_ref(16,_)  = 52.17*(1 - sex) + 42.96*sex;    // 18 years old
+ffm_ref(16,_)  = under*(44.56*(1 - sex) + 35.98*sex)   + normales*(49.11*(1 - sex) + 40.92*sex)   + over*(56.32*(1 - sex) + 46.59*sex)  + obese*(61.05*(1 - sex) + 50.02*sex);    // 18 years old
 
 
 NumericVector ffm_ref_t(nind);
@@ -224,7 +224,7 @@ fm_ref(12,_)  = under*(3.83*(1 - sex) + 5.46*sex)   + normales*(8.68*(1 - sex) +
 fm_ref(13,_)  = under*(4.03*(1 - sex) + 5.17*sex)   + normales*(9.37*(1 - sex) + 10.80*sex)  + over*(16.09*(1 - sex) + 17.85*sex) + obese*(27.83*(1 - sex) + 29.25*sex); // 15 years old
 fm_ref(14,_)  = under*(4.44*(1 - sex) + 4.94*sex)   + normales*(9.94*(1 - sex) + 11.04*sex)  + over*(18.35*(1 - sex) + 19.78*sex) + obese*(29.81*(1 - sex) + 32.43*sex); // 16 years old
 fm_ref(15,_)  = under*(4.65*(1 - sex) + 5.19*sex)   + normales*(10.13*(1 - sex) + 10.81*sex) + over*(18.50*(1 - sex) + 19.11*sex) + obese*(30.15*(1 - sex) + 30.51*sex); // 17 years old
-fm_ref(16,_)  = 13.35*(1 - sex) + 15.89*sex;    // 18 years old
+fm_ref(16,_)  = under*(5.07*(1 - sex) + 5.04*sex)   + normales*(10.78*(1 - sex) + 11.02*sex) + over*(19.24*(1 - sex) + 19.53*sex) + obese*(37.55*(1 - sex) + 31.50*sex);    // 18 years old
 
 NumericVector fm_ref_t(nind);
 int jmin;
