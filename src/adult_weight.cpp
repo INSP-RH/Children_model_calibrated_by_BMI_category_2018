@@ -289,7 +289,7 @@ NumericVector Adult::delta_times_bw(double t, NumericVector F, NumericVector L, 
   // delta(t)*BW(t) = ((1 - beta_TEF)*PAL(t) - 1)*RMR(t) = coef*RMR(t)
    NumericVector coef = ((1 - betaTEF)*deltaPAL(t) - 1);
  //On the other hand: RMR = 9.99*BW(t) + 625*ht - 4.92*age(t) + 5 -166*sex;
-  NumericVector rmr_t = 9.99*(F + L + 3.7*G + ECF) + 625*ht - 4.92*(age + t) +5 -166*sex;
+  NumericVector rmr_t = 9.99*(F + L + 3.7*G + ECF) + 625*ht - 4.92*(age + t/365) +5 -166*sex;
    return delta =  coef*rmr_t;   
 }
 
