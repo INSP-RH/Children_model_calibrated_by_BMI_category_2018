@@ -287,10 +287,10 @@ void Adult::getEnergy(void){
 //Calculate parameter delta
 NumericVector Adult::delta_times_bw(double t, NumericVector F, NumericVector L, NumericVector G, NumericVector ECF){
   // delta(t)*BW(t) = ((1 - beta_TEF)*PAL(t) - 1)*RMR(t) = coef*RMR(t)
-   coef = ((1 - beta_TEF)*PAL(t) - 1);
+   NumericVector coef = ((1 - beta_TEF)*PAL(t) - 1);
  //On the other hand: RMR = 9.99*BW(t) + 625*ht - 4.92*age(t) + 5 -166*sex;
-  rmr_t = 9.99*(F + L + 3.7*G + ECF) + 625*ht - 4.92*(age + t) +5 -166*sex;
-   return delta_bw =  coef*rmr_t;   
+  NumericVector rmr_t = 9.99*(F + L + 3.7*G + ECF) + 625*ht - 4.92*(age + t) +5 -166*sex;
+   return delta =  coef*rmr_t;   
 }
 
 //Get extracellular water by Silva's equation
