@@ -160,7 +160,7 @@ private:
     NumericVector deltaPAL(double t);
     NumericVector deltaEI(double t);
     NumericVector deltaNA(double t);
-    NumericVector getDelta(double t);
+    NumericVector delta_times_bw(double t, NumericVector F, NumericVector L, NumericVector G, NumericVector ECF);
     NumericVector TEF(double t);
     NumericVector dAT(double t, NumericVector AT);
     NumericVector dECF(double t, NumericVector ECF);
