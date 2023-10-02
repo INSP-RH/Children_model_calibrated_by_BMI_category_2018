@@ -95,7 +95,7 @@ child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1, referenc
   
    #Change referenceValues to numeric for c++
   referenceValues1    <- ifelse(referenceValues == "median", 1, 0)
-  referenceValues <- referencevalues1
+  referenceValues <- referenceValues1
   
   #Check that we don't go over 18 yrs where we have no data
   if (max(age) + days/365 > 18){
