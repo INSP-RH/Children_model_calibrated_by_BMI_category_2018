@@ -54,7 +54,7 @@ public:
     NumericVector FM;   //Fat Mass (kg)
     NumericMatrix EIntake;
     bool          check; // Check values are correct
-    double reference; //
+    double referenceValues; //
     
     //Functions
     //---------------------------------------------------------------------------
