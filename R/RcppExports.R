@@ -13,20 +13,20 @@ adult_weight_wrapper_EI_fat <- function(bw, ht, age, sex, EIchange, NAchange, PA
     .Call('_bw_adult_weight_wrapper_EI_fat', PACKAGE = 'bw', bw, ht, age, sex, EIchange, NAchange, PAL, pcarb_base, pcarb, dt, input_EI, input_fat, days, checkValues)
 }
 
-child_weight_wrapper <- function(age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, reference_values) {
-    .Call('_bw_child_weight_wrapper', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, reference_values)
+child_weight_wrapper <- function(age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, referenceValues) {
+    .Call('_bw_child_weight_wrapper', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, referenceValues)
 }
 
-child_weight_wrapper_richardson <- function(age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, reference_values) {
-    .Call('_bw_child_weight_wrapper_richardson', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, reference_values)
+child_weight_wrapper_richardson <- function(age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, referenceValues) {
+    .Call('_bw_child_weight_wrapper_richardson', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, referenceValues)
 }
 
-intake_reference_wrapper <- function(age, sex, bmiCat, FFM, FM, days, dt, reference_values) {
-    .Call('_bw_intake_reference_wrapper', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, days, dt, reference_values)
+intake_reference_wrapper <- function(age, sex, bmiCat, FFM, FM, days, dt, referenceValues) {
+    .Call('_bw_intake_reference_wrapper', PACKAGE = 'bw', age, sex, bmiCat, FFM, FM, days, dt, referenceValues)
 }
 
-mass_reference_wrapper <- function(age, sex, bmiCat, reference_values) {
-    .Call('_bw_mass_reference_wrapper', PACKAGE = 'bw', age, sex, bmiCat, reference_values)
+mass_reference_wrapper <- function(age, sex, bmiCat, referenceValues) {
+    .Call('_bw_mass_reference_wrapper', PACKAGE = 'bw', age, sex, bmiCat, referenceValues)
 }
 
 EnergyBuilder <- function(Energy, Time, interpol) {
