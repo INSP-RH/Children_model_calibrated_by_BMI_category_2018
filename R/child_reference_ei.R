@@ -60,11 +60,12 @@
 #' @keywords internal
 #' @export
 
-child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1){
+child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1, reference_values = "Median"){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
   newsex[which(sex == "female")] <- 1
+
   
   #Check all variables are positive
   if (any(age < 0) || any(FM < 0) || any(FFM < 0)){
@@ -86,6 +87,15 @@ child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1){
   if (length(which(!(sex %in% c("male","female")))) > 0){
     stop(paste0("Invalid sex. Please specify either 'male' of 'female'"))
   }
+
+  #Check reference_values is "median" or "mean"
+  if (length(which(!(reference_values %in% c("mean","median")))) > 0){
+    stop(paste0("Invalid reference_values. Please specify either 'mean' of 'median'"))
+  }
+  
+   #Change reference_values to numeric for c++
+  reference_values1    <- ifelse(reference_values == "Median", 1, 0)
+  reference_values <- reference values1
   
   #Check that we don't go over 18 yrs where we have no data
   if (max(age) + days/365 > 18){
@@ -105,5 +115,5 @@ child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1){
   }
   
   #Get c++ function
-  t(intake_reference_wrapper(age, newsex, bmiCat, FM, FFM, days, dt))
+  t(intake_reference_wrapper(age, newsex, bmiCat, FM, FFM, days, dt, reference_values))
 }
