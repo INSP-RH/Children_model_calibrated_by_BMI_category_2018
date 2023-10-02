@@ -148,7 +148,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type sex(sexSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type bmiCat(bmiCatSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type reference_values(reference_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(mass_reference_wrapper(age, sex, bmiCat));
+    rcpp_result_gen = Rcpp::wrap(mass_reference_wrapper(age, sex, bmiCat, reference_values));
     return rcpp_result_gen;
 END_RCPP
 }
