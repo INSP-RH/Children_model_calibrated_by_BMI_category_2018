@@ -76,8 +76,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // child_weight_wrapper
-List child_weight_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, NumericMatrix input_EIntake, double days, double dt, bool checkValues, double reference_values);
-RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP, SEXP reference_valuesSEXP) {
+List child_weight_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, NumericMatrix input_EIntake, double days, double dt, bool checkValues, double referenceValues);
+RcppExport SEXP _bw_child_weight_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP input_EIntakeSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP, SEXP referenceValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -90,14 +90,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type days(daysSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
     Rcpp::traits::input_parameter< bool >::type checkValues(checkValuesSEXP);
-    Rcpp::traits::input_parameter< double >::type reference_values(reference_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(child_weight_wrapper(age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, reference_values));
+    Rcpp::traits::input_parameter< double >::type referenceValues(referenceValuesSEXP);
+    rcpp_result_gen = Rcpp::wrap(child_weight_wrapper(age, sex, bmiCat, FFM, FM, input_EIntake, days, dt, checkValues, referenceValues));
     return rcpp_result_gen;
 END_RCPP
 }
 // child_weight_wrapper_richardson
-List child_weight_wrapper_richardson(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double K, double Q, double A, double B, double nu, double C, double days, double dt, bool checkValues, double reference_values);
-RcppExport SEXP _bw_child_weight_wrapper_richardson(SEXP ageSEXP, SEXP sexSEXP,  SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP KSEXP, SEXP QSEXP, SEXP ASEXP, SEXP BSEXP, SEXP nuSEXP, SEXP CSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP, SEXP reference_valuesSEXP) {
+List child_weight_wrapper_richardson(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double K, double Q, double A, double B, double nu, double C, double days, double dt, bool checkValues, double referenceValues);
+RcppExport SEXP _bw_child_weight_wrapper_richardson(SEXP ageSEXP, SEXP sexSEXP,  SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP KSEXP, SEXP QSEXP, SEXP ASEXP, SEXP BSEXP, SEXP nuSEXP, SEXP CSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP checkValuesSEXP, SEXP referenceValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -115,14 +115,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type days(daysSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
     Rcpp::traits::input_parameter< bool >::type checkValues(checkValuesSEXP);
-    Rcpp::traits::input_parameter< double >::type reference_values(reference_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(child_weight_wrapper_richardson(age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, reference_values));
+    Rcpp::traits::input_parameter< double >::type referenceValues(referenceValuesSEXP);
+    rcpp_result_gen = Rcpp::wrap(child_weight_wrapper_richardson(age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, referenceValues));
     return rcpp_result_gen;
 END_RCPP
 }
 // intake_reference_wrapper
-NumericMatrix intake_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double days, double dt, double reference_values);
-RcppExport SEXP _bw_intake_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP reference_valuesSEXP) {
+NumericMatrix intake_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, NumericVector FFM, NumericVector FM, double days, double dt, double referenceValues);
+RcppExport SEXP _bw_intake_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP FFMSEXP, SEXP FMSEXP, SEXP daysSEXP, SEXP dtSEXP, SEXP referenceValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -133,22 +133,22 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type FM(FMSEXP);
     Rcpp::traits::input_parameter< double >::type days(daysSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
-    Rcpp::traits::input_parameter< double >::type  reference_values(reference_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(intake_reference_wrapper(age, sex, bmiCat, FFM, FM, days, dt, reference_values));
+    Rcpp::traits::input_parameter< double >::type  referenceValues(referenceValuesSEXP);
+    rcpp_result_gen = Rcpp::wrap(intake_reference_wrapper(age, sex, bmiCat, FFM, FM, days, dt, referenceValues));
     return rcpp_result_gen;
 END_RCPP
 }
 // mass_reference_wrapper
-List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, double reference_values);
-RcppExport SEXP _bw_mass_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP  reference_valuesSEXP) {
+List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector bmiCat, double referenceValues);
+RcppExport SEXP _bw_mass_reference_wrapper(SEXP ageSEXP, SEXP sexSEXP, SEXP bmiCatSEXP, SEXP  referenceValuesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type age(ageSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type sex(sexSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type bmiCat(bmiCatSEXP);
-    Rcpp::traits::input_parameter< double >::type reference_values(reference_valuesSEXP);
-    rcpp_result_gen = Rcpp::wrap(mass_reference_wrapper(age, sex, bmiCat, reference_values));
+    Rcpp::traits::input_parameter< double >::type referenceValues(referenceValuesSEXP);
+    rcpp_result_gen = Rcpp::wrap(mass_reference_wrapper(age, sex, bmiCat, referenceValues));
     return rcpp_result_gen;
 END_RCPP
 }
