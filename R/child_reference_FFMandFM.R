@@ -60,7 +60,7 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
   
   #Change referenceValues to numeric for c++
   referenceValues1    <- ifelse(referenceValues == "Median", 1, 0)
-  referenceValues <- reference values1
+  referenceValues <- referencevalues1
   
   #Check all variables are positive
   if (any(age < 0) ){
