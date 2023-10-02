@@ -99,7 +99,7 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
                          FFM = child_reference_FFMandFM(age, sex, bmiCat)$FFM, 
                          EI = NA, 
                          richardsonparams = list(K = NA, Q = NA, B = NA, A = NA, nu = NA, C = NA),
-                         days = 365, dt = 1, checkValues = TRUE, reference_values = "median"){
+                         days = 365, dt = 1, checkValues = TRUE, referenceValues = "median"){
   
   #Check all variables are positive
   if (any(age < 0) || any(FM < 0) || any(FFM < 0)){
@@ -122,9 +122,9 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
     stop(paste0("Invalid sex. Please specify either 'male' of 'female'"))
   }
 
- #Check reference_values is "median" or "mean"
-  if (length(which(!(reference_values %in% c("mean","median")))) > 0){
-    stop(paste0("Invalid reference_values. Please specify either 'mean' of 'median'"))
+ #Check referenceValues is "median" or "mean"
+  if (length(which(!(referenceValues %in% c("mean","median")))) > 0){
+    stop(paste0("Invalid referenceValues. Please specify either 'mean' of 'median'"))
   }
 
   
@@ -152,9 +152,9 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
   newsex                         <- rep(0, length(sex))
   newsex[which(sex == "female")] <- 1
 
-   #Change reference_values to numeric for c++
-  reference_values1    <- ifelse(reference_values == "Median", 1, 0)
-  reference_values <- reference values1
+   #Change referenceValues to numeric for c++
+  referenceValues1    <- ifelse(referenceValues == "Median", 1, 0)
+  referenceValues <- reference values1
   
   #Check bmiCat is 1-4
   if (  any( !(bmiCat %in% c(1,2,3,4)) )  ){
@@ -164,13 +164,13 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
   #Choose between richardson curve or given energy intake
   if (!is.na(EI[1])){
    # message("Using user's energy intake")
-    wt <- child_weight_wrapper(age, newsex, bmiCat, FFM, FM, as.matrix(EI), days, dt, checkValues, reference_values)  
+    wt <- child_weight_wrapper(age, newsex, bmiCat, FFM, FM, as.matrix(EI), days, dt, checkValues, referenceValues)  
   } else {
    # message("Using Richardson's function")
     wt <- child_weight_wrapper_richardson(age, newsex, bmiCat, FFM, FM, richardsonparams$K, 
                                richardsonparams$Q, richardsonparams$A, 
                                richardsonparams$B, richardsonparams$nu, 
-                               richardsonparams$C, days, dt, checkValues, reference_values)
+                               richardsonparams$C, days, dt, checkValues, referenceValues)
   }
   
   
