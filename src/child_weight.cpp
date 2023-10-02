@@ -235,10 +235,10 @@ NumericVector normales = ifelse(bmiCat == 2, 1.0, 0.0);
 NumericVector over = ifelse(bmiCat == 3, 1.0, 0.0);
 NumericVector obese = ifelse(bmiCat == 4, 1.0, 0.0);
 
-
+NumericMatrix fm_ref(17,nind);
  if(referenceValues == 0){
   // ---------------------------------------- Mean values
-NumericMatrix fm_ref(17,nind);
+
 fm_ref(0,_)   = 2.456*(1-sex)+ 2.433*sex;       // 2 years old
 fm_ref(1,_)   = 2.576*(1 - sex) + 2.606*sex;    // 3 years old
 fm_ref(2,_)   = 2.7*(1 - sex) + 2.8*sex;        // 4 years old
@@ -260,7 +260,7 @@ fm_ref(16,_)  = under*(5.07*(1 - sex) + 5.04*sex)   + normales*(10.78*(1 - sex) 
 
  if(referenceValues == 1){
   // ---------------------------------------- Median values
-NumericMatrix fm_ref(17,nind);
+
 fm_ref(0,_)   = 2.456*(1-sex)+ 2.433*sex;       // 2 years old
 fm_ref(1,_)   = 2.576*(1 - sex) + 2.606*sex;    // 3 years old
 fm_ref(2,_)   = 2.7*(1 - sex) + 2.8*sex;        // 4 years old
