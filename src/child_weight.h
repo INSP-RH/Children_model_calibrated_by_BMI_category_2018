@@ -40,7 +40,7 @@ class Child {
 public:
     
     //Constructor and destroyer
-    Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake, double input_dt, bool checkValues, double referenceValues);
+    Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake, double input_dt, bool checkValues, double input_referenceValues);
     Child(NumericVector input_age, NumericVector input_sex,  NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM,  double input_K, double input_Q, double input_A, double input_B, double input_nu, double input_C,
           double input_dt, bool checkValues, double input_referenceValues);
     
