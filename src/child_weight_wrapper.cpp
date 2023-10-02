@@ -127,7 +127,7 @@ List mass_reference_wrapper(NumericVector age, NumericVector sex, NumericVector 
     NumericMatrix inputFFM(1,1);
     
     //Create new adult with characteristics
-    Child Person (age,  sex, bmiCat, inputFFM, inputFM, EI, 1.0, false, double referenceValues);
+    Child Person (age,  sex, bmiCat, inputFFM, inputFM, EI, 1.0, false, referenceValues);
     
     //Energy matrix
     NumericVector FM  = Person.FMReference(age);
