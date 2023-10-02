@@ -153,7 +153,7 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
   newsex[which(sex == "female")] <- 1
 
    #Change referenceValues to numeric for c++
-  referenceValues1    <- ifelse(referenceValues == "Median", 1, 0)
+  referenceValues1    <- ifelse(referenceValues == "median", 1, 0)
   referenceValues <- referencevalues1
   
   #Check bmiCat is 1-4
