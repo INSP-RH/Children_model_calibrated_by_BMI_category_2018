@@ -52,15 +52,15 @@
 #' @keywords internal
 #' @export
 
-child_reference_FFMandFM <- function(age, sex, bmiCat, reference_values){
+child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
   newsex[which(sex == "female")] <- 1
   
-  #Change reference_values to numeric for c++
-  reference_values1    <- ifelse(reference_values == "Median", 1, 0)
-  reference_values <- reference values1
+  #Change referenceValues to numeric for c++
+  referenceValues1    <- ifelse(referenceValues == "Median", 1, 0)
+  referenceValues <- reference values1
   
   #Check all variables are positive
   if (any(age < 0) ){
@@ -77,9 +77,9 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, reference_values){
     stop(paste0("Invalid sex. Please specify either 'male' of 'female'"))
   }
 
-  #Check reference_values is "median" or "mean"
-  if (length(which(!(reference_values %in% c("mean","median")))) > 0){
-    stop(paste0("Invalid reference_values. Please specify either 'mean' of 'median'"))
+  #Check referenceValues is "median" or "mean"
+  if (length(which(!(referenceValues %in% c("mean","median")))) > 0){
+    stop(paste0("Invalid referenceValues. Please specify either 'mean' of 'median'"))
   }
   
   #Check that we don't go over 18 yrs where we have no data
@@ -95,5 +95,5 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, reference_values){
   }
   
   #Get c++ function
-  mass_reference_wrapper(age, newsex, bmiCat, reference_values)
+  mass_reference_wrapper(age, newsex, bmiCat, referenceValues)
 }
