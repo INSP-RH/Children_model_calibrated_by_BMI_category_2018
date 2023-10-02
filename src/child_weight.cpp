@@ -74,7 +74,7 @@
 
 //Default (classic) constructor for energy matrix
 Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake,
-             double input_dt, bool checkValues, double reference_values){
+             double input_dt, bool checkValues, double referenceValues){
     age   = input_age;
     sex   = input_sex;
     bmiCat = input_bmiCat;
@@ -84,14 +84,14 @@ Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector inp
     EIntake = input_EIntake;
     check = checkValues;
     generalized_logistic = false;
-    double reference_values;
+    referenceValues = input_referenceValues;
     build();
 }
 
 //Constructor which uses Richard's curve with the parameters of https://en.wikipedia.org/wiki/Generalised_logistic_function
 Child::Child(NumericVector input_age, NumericVector input_sex,  NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, double input_K,
              double input_Q, double input_A, double input_B, double input_nu, double input_C, 
-             double input_dt, bool checkValues, double reference_values){
+             double input_dt, bool checkValues, double referenceValues){
     age   = input_age;
     sex   = input_sex;
     bmiCat = input_bmiCat;
@@ -105,8 +105,9 @@ Child::Child(NumericVector input_age, NumericVector input_sex,  NumericVector in
     nu_logistic = input_nu;
     C_logistic = input_C;
     check = checkValues;
+    referenceValues = input_referenceValues
     generalized_logistic = true;
-    double reference_values;
+    ;
     build();
 }
 
@@ -164,7 +165,7 @@ NumericVector over = ifelse(bmiCat == 3, 1.0, 0.0);
 NumericVector obese = ifelse(bmiCat == 4, 1.0, 0.0);
 
 
-  if(reference_values == 0){
+  if(referenceValues == 0){
   // -------------------------- Mean values
 NumericMatrix ffm_ref(17,nind);
 ffm_ref(0,_)   = 10.134*(1-sex)+9.477*sex;       // 2 years old
@@ -188,7 +189,7 @@ ffm_ref(16,_)  = under*(44.56*(1 - sex) + 35.98*sex)   + normales*(49.11*(1 - se
   }
 
 
-  if(reference_values == 1){
+  if(referenceValues == 1){
     // -------------------------- Median values
 NumericMatrix ffm_ref(17,nind);
 ffm_ref(0,_)   = 10.134*(1-sex)+9.477*sex;       // 2 years old
@@ -237,7 +238,7 @@ NumericVector over = ifelse(bmiCat == 3, 1.0, 0.0);
 NumericVector obese = ifelse(bmiCat == 4, 1.0, 0.0);
 
 
- if(reference_values == 0){
+ if(referenceValues == 0){
   // ---------------------------------------- Mean values
 NumericMatrix fm_ref(17,nind);
 fm_ref(0,_)   = 2.456*(1-sex)+ 2.433*sex;       // 2 years old
@@ -259,7 +260,7 @@ fm_ref(15,_)  = under*(4.66*(1 - sex) + 5.19*sex)   + normales*(10.25*(1 - sex) 
 fm_ref(16,_)  = under*(5.07*(1 - sex) + 5.04*sex)   + normales*(10.78*(1 - sex) + 11.02*sex) + over*(19.24*(1 - sex) + 19.53*sex) + obese*(37.55*(1 - sex) + 31.50*sex);    // 18 years old
  }
 
- if(reference_values == 1){
+ if(referenceValues == 1){
   // ---------------------------------------- Median values
 NumericMatrix fm_ref(17,nind);
 fm_ref(0,_)   = 2.456*(1-sex)+ 2.433*sex;       // 2 years old
