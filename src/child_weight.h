@@ -40,9 +40,9 @@ class Child {
 public:
     
     //Constructor and destroyer
-    Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake, double input_dt, bool checkValues, double reference_values);
+    Child(NumericVector input_age, NumericVector input_sex, NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM, NumericMatrix input_EIntake, double input_dt, bool checkValues, double referenceValues);
     Child(NumericVector input_age, NumericVector input_sex,  NumericVector input_bmiCat, NumericVector input_FFM, NumericVector input_FM,  double input_K, double input_Q, double input_A, double input_B, double input_nu, double input_C,
-          double input_dt, bool checkValues, double reference_values);
+          double input_dt, bool checkValues, double referenceValues);
     
     ~Child(void);
     
@@ -54,7 +54,7 @@ public:
     NumericVector FM;   //Fat Mass (kg)
     NumericMatrix EIntake;
     bool          check; // Check values are correct
-    double reference_values; //
+    double referenceValues; //
     
     //Functions
     //---------------------------------------------------------------------------
