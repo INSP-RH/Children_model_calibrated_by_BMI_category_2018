@@ -84,7 +84,7 @@ Child::Child(NumericVector input_age, NumericVector input_sex, NumericVector inp
     EIntake = input_EIntake;
     check = checkValues;
     generalized_logistic = false;
-    reference = input_referenceValues;
+    referenceValues = input_referenceValues;
     build();
 }
 
@@ -105,7 +105,7 @@ Child::Child(NumericVector input_age, NumericVector input_sex,  NumericVector in
     nu_logistic = input_nu;
     C_logistic = input_C;
     check = checkValues;
-    reference = input_referenceValues;
+    referenceValues = input_referenceValues;
     generalized_logistic = true;
     ;
     build();
