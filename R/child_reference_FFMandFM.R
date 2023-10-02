@@ -57,6 +57,11 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
   newsex[which(sex == "female")] <- 1
+
+    #Check referenceValues is "median" or "mean"
+  if (length(which(!(referenceValues %in% c("mean","median")))) > 0){
+    stop(paste0("Invalid referenceValues. Please specify either 'mean' of 'median'"))
+  }
   
   #Change referenceValues to numeric for c++
   referenceValues1    <- ifelse(referenceValues == "median", 1, 0)
@@ -77,10 +82,7 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
     stop(paste0("Invalid sex. Please specify either 'male' of 'female'"))
   }
 
-  #Check referenceValues is "median" or "mean"
-  if (length(which(!(referenceValues %in% c("mean","median")))) > 0){
-    stop(paste0("Invalid referenceValues. Please specify either 'mean' of 'median'"))
-  }
+
   
   #Check that we don't go over 18 yrs where we have no data
   if (max(age) > 18){
