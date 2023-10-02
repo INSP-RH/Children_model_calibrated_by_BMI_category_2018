@@ -105,7 +105,7 @@ Child::Child(NumericVector input_age, NumericVector input_sex,  NumericVector in
     nu_logistic = input_nu;
     C_logistic = input_C;
     check = checkValues;
-    referenceValues = referenceValues
+    referenceValues = referenceValues;
     generalized_logistic = true;
     ;
     build();
