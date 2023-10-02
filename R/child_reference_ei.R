@@ -60,7 +60,7 @@
 #' @keywords internal
 #' @export
 
-child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1, referenceValues = "Median"){
+child_reference_EI <- function(age, sex, bmiCat, FM, FFM, days, dt = 1, referenceValues = "median"){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
