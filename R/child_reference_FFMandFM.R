@@ -59,7 +59,7 @@ child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
   newsex[which(sex == "female")] <- 1
   
   #Change referenceValues to numeric for c++
-  referenceValues1    <- ifelse(referenceValues == "Median", 1, 0)
+  referenceValues1    <- ifelse(referenceValues == "median", 1, 0)
   referenceValues <- referencevalues1
   
   #Check all variables are positive
