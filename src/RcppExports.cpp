@@ -115,7 +115,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type days(daysSEXP);
     Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
     Rcpp::traits::input_parameter< bool >::type checkValues(checkValuesSEXP);
-    Rcpp::traits::input_parameter< bool >::type reference_values(reference_valuesSEXP);
+    Rcpp::traits::input_parameter< double >::type reference_values(reference_valuesSEXP);
     rcpp_result_gen = Rcpp::wrap(child_weight_wrapper_richardson(age, sex, bmiCat, FFM, FM, K, Q, A, B, nu, C, days, dt, checkValues, reference_values));
     return rcpp_result_gen;
 END_RCPP
@@ -147,7 +147,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type age(ageSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type sex(sexSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type bmiCat(bmiCatSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type reference_values(reference_valuesSEXP);
+    Rcpp::traits::input_parameter< double >::type reference_values(reference_valuesSEXP);
     rcpp_result_gen = Rcpp::wrap(mass_reference_wrapper(age, sex, bmiCat, reference_values));
     return rcpp_result_gen;
 END_RCPP
