@@ -154,7 +154,7 @@ child_weight <- function(age, sex, bmiCat, FM = child_reference_FFMandFM(age, se
 
    #Change referenceValues to numeric for c++
   referenceValues1    <- ifelse(referenceValues == "median", 1, 0)
-  referenceValues <- referencevalues1
+  referenceValues <- referenceValues1
   
   #Check bmiCat is 1-4
   if (  any( !(bmiCat %in% c(1,2,3,4)) )  ){
