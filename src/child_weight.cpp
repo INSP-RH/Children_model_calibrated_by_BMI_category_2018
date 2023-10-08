@@ -171,20 +171,19 @@ ffm_ref(0,_)   = 10.134*(1-sex)+9.477*sex;       // 2 years old
 ffm_ref(1,_)   = 12.099*(1 - sex) + 11.494*sex;    // 3 years old
 ffm_ref(2,_)   = 14.0*(1 - sex) + 13.2*sex;        // 4 years old
 ffm_ref(3,_)   = 15.72*(1 - sex) + 14.86*sex;      // 5 years old
-ffm_ref(4,_)   = under*(14.27*(1-sex) + 15.97*sex) + normales*(17.26*(1-sex) + 15.81*sex) + over*(19.36*(1-sex) + 18.59*sex) + obese*(21.78*(1-sex) + 21.12*sex);   // 6 years old
-ffm_ref(5,_)   = under*(17.59*(1-sex) + 16.96*sex) + normales*(18.99*(1-sex) + 17.94*sex) + over*(21.84*(1-sex) + 21.08*sex) + obese*(24.77*(1-sex) + 25.64*sex);   // 7 years old
-ffm_ref(6,_)   = under*(17.84*(1-sex) + 18.11*sex) + normales*(20.74*(1-sex) + 19.99*sex) + over*(25.30*(1-sex) + 23.05*sex) + obese*(28.78*(1-sex) + 28.19*sex);   // 8 years old
-ffm_ref(7,_)   = under*(19.88*(1-sex) + 16.08*sex) + normales*(23.47*(1-sex) + 22.15*sex) + over*(27.45*(1-sex) + 27.49*sex) + obese*(32.39*(1-sex) + 31.12*sex);   // 9 years old
-ffm_ref(8,_)   = under*(23.36*(1-sex) + 23.89*sex) + normales*(25.34*(1-sex) + 25.24*sex) + over*(30.95*(1-sex) + 31.35*sex) + obese*(35.98*(1-sex) + 35.88*sex);   // 10 years old
-ffm_ref(9,_)   = under*(23.28*(1-sex) + 21.65*sex) + normales*(28.65*(1-sex) + 29.39*sex) + over*(33.63*(1-sex) + 35.25*sex) + obese*(39.30*(1-sex) + 39.48*sex);   // 11 years old
-ffm_ref(10,_)   = under*(27.81*(1-sex) + 26.49*sex) + normales*(33.09*(1-sex) + 32.61*sex) + over*(39.50*(1-sex) + 37.22*sex) + obese*(44.78*(1-sex) + 42.21*sex);   // 12 years old
-ffm_ref(11,_)   = under*(31.85*(1-sex) + 28.45*sex) + normales*(38.70*(1-sex) + 35.03*sex) + over*(42.83*(1-sex) + 39.30*sex) + obese*(47.03*(1-sex) + 45.04*sex);   // 13 years old
-ffm_ref(12,_)   = under*(34.02*(1-sex) + 34.25*sex) + normales*(42.22*(1-sex) + 36.56*sex) + over*(48.29*(1-sex) + 41.34*sex) + obese*(54.67*(1-sex) + 46.77*sex);   // 14 years old
-ffm_ref(13,_)   = under*(34.98*(1-sex) + 33.17*sex) + normales*(45.14*(1-sex) + 38.67*sex) + over*(50.03*(1-sex) + 43.54*sex) + obese*(55.64*(1-sex) + 47.84*sex);   // 15 years old
-ffm_ref(14,_)   = under*(39.77*(1-sex) + 31.71*sex) + normales*(47.14*(1-sex) + 39.64*sex) + over*(53.85*(1-sex) + 45.74*sex) + obese*(58.06*(1-sex) + 50.88*sex);   // 16 years old
-ffm_ref(15,_)   = under*(42.18*(1-sex) + 33.63*sex) + normales*(48.25*(1-sex) + 39.85*sex) + over*(55.52*(1-sex) + 45.27*sex) + obese*(60.08*(1-sex) + 50.53*sex);   // 17 years old
-ffm_ref(16,_)   = under*(44.56*(1-sex) + 35.98*sex) + normales*(49.14*(1-sex) + 40.92*sex) + over*(56.26*(1-sex) + 46.59*sex) + obese*(61.05*(1-sex) + 50.02*sex);   // 18 years old
-
+ffm_ref(4,_)   = under*(12.7942*(1-sex) + 13.7957*sex) + normales*(17.0238*(1-sex) + 15.2337*sex) + over*(19.3070*(1-sex) + 17.7866*sex) + obese*(22.2248*(1-sex) + 21.2170*sex);   // 6 years old
+ffm_ref(5,_)   = under*(16.4366*(1-sex) + 17.1507*sex) + normales*(18.3301*(1-sex) + 17.2527*sex) + over*(21.5992*(1-sex) + 20.4217*sex) + obese*(24.4376*(1-sex) + 23.9691*sex);   // 7 years old
+ffm_ref(6,_)   = under*(17.8655*(1-sex) + 17.2583*sex) + normales*(20.0123*(1-sex) + 19.4506*sex) + over*(24.0216*(1-sex) + 22.8679*sex) + obese*(27.6287*(1-sex) + 27.5033*sex);   // 8 years old
+ffm_ref(7,_)   = under*(19.3668*(1-sex) + 17.0314*sex) + normales*(22.3768*(1-sex) + 21.3680*sex) + over*(26.7714*(1-sex) + 26.1791*sex) + obese*(31.3143*(1-sex) + 30.1484*sex);   // 9 years old
+ffm_ref(8,_)   = under*(23.9096*(1-sex) + 19.1085*sex) + normales*(24.8998*(1-sex) + 24.0922*sex) + over*(30.4866*(1-sex) + 30.3541*sex) + obese*(34.1717*(1-sex) + 35.2838*sex);   // 10 years old
+ffm_ref(9,_)   = under*(23.5033*(1-sex) + 23.3318*sex) + normales*(27.5943*(1-sex) + 28.2737*sex) + over*(32.6556*(1-sex) + 34.1915*sex) + obese*(38.2638*(1-sex) + 37.0428*sex);   // 11 years old
+ffm_ref(10,_)   = under*(24.7662*(1-sex) + 25.9357*sex) + normales*(31.5163*(1-sex) + 31.9490*sex) + over*(37.5262*(1-sex) + 37.0654*sex) + obese*(42.3513*(1-sex) + 42.5446*sex);   // 12 years old
+ffm_ref(11,_)   = under*(28.9497*(1-sex) + 30.2351*sex) + normales*(36.3432*(1-sex) + 34.3348*sex) + over*(41.6549*(1-sex) + 39.1559*sex) + obese*(48.1398*(1-sex) + 44.0205*sex);   // 13 years old
+ffm_ref(12,_)   = under*(33.9297*(1-sex) + 33.6380*sex) + normales*(40.9730*(1-sex) + 36.1797*sex) + over*(48.0671*(1-sex) + 40.9960*sex) + obese*(50.1084*(1-sex) + 46.0726*sex);   // 14 years old
+ffm_ref(13,_)   = under*(35.2601*(1-sex) + 33.0539*sex) + normales*(43.7795*(1-sex) + 38.1065*sex) + over*(49.3493*(1-sex) + 42.8965*sex) + obese*(55.6289*(1-sex) + 48.6841*sex);   // 15 years old
+ffm_ref(14,_)   = under*(40.5041*(1-sex) + 32.9676*sex) + normales*(46.9540*(1-sex) + 40.1114*sex) + over*(52.9435*(1-sex) + 45.6216*sex) + obese*(58.9917*(1-sex) + 49.7917*sex);   // 16 years old
+ffm_ref(15,_)   = under*(42.0445*(1-sex) + 32.3827*sex) + normales*(47.8972*(1-sex) + 39.6064*sex) + over*(55.8888*(1-sex) + 46.1784*sex) + obese*(58.7117*(1-sex) + 51.0534*sex);   // 17 years old
+ffm_ref(16,_)   = under*(44.0779*(1-sex) + 35.5248*sex) + normales*(49.6930*(1-sex) + 41.2798*sex) + over*(56.5725*(1-sex) + 45.9979*sex) + obese*(61.7620*(1-sex) + 49.8746*sex);   // 18 years old
   }
 
 
