@@ -52,7 +52,7 @@
 #' @keywords internal
 #' @export
 
-child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues){
+child_reference_FFMandFM <- function(age, sex, bmiCat, referenceValues = "median"){
   
   #Change sex to numeric for c++
   newsex                         <- rep(0, length(sex))
